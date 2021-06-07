@@ -31,7 +31,6 @@ export const MotoBox = styled.div`
 
 export const MotoUserName = styled.h4`
     font-size: 21px;
-    display: inline-block;
     margin: 0;
     padding: 5px;
 `;
