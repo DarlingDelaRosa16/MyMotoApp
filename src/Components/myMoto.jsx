@@ -1,19 +1,54 @@
-import React from 'react'
-import {MotoBox, MotoBoxContent, MotoButtonCall, MotoServiceTime, MotoUserName, MotoUserState, MyMotoApp, TitleBoxContent} from '../styled'
+import {React, useState} from 'react'
+import {AplicationName, LoginButton, MotoBox, MotoBoxContent, MotoBoxIdentification,
+    MotoButtonCall, MotoServiceTime, MotoUserName, MotoUserState, MyMotoApp,
+    TitleBoxContent, UserName} from '../styled'
+import LogIn from './logIn'
+import MotoWaitingList from './motoWaitingList'
+import MyMotoID from './myMotoID'
+
 
 const MyMoto = () => {
+    
+    const [state, setState] = useState([false, "Libre"])
+    const [stateRequest, setStateRequest] = useState("Solicitar")
+    const [motoModal, setMotoModal] = useState([false, false, false])
+
+    const motoRequest = ()=>{
+        if(state[0] === false){
+            setState([true, "Ocupado"])
+            setStateRequest("Lista de espera")
+        }
+        if(state[0] === true){
+            setMotoModal([false, false, true])
+         }
+    }
+    const infoMotoUser = ()=>{
+        setMotoModal([false, true, false])
+    }
+    const LoginIn = ()=>{
+        setMotoModal([true, false, false])
+    }
+
     return (
         <>
-        <MyMotoApp>
-            My Motorista
+        <MyMotoApp >
+            <LoginButton onClick={LoginIn}>Log In</LoginButton>
+            <MotoBoxIdentification show={motoModal[0]}><LogIn showOff={{motoModal, setMotoModal}}/></MotoBoxIdentification>
+            <AplicationName>My Motorista</AplicationName>
+            <UserName>Darling165</UserName>
         </MyMotoApp>
+        
         <MotoBoxContent>
-            <TitleBoxContent>Parada SIK17BN</TitleBoxContent>
+            <TitleBoxContent >Parada SI-K17-BN</TitleBoxContent>
             <MotoBox>
-                <MotoUserName>Darling Nomar De la Rosa</MotoUserName>
-                <MotoUserState>libre</MotoUserState>
+
+                <MotoUserName mouseCursor="pointer" colorName="black" as="a" onClick={infoMotoUser} >Darling Nomar De la Rosa</MotoUserName>
+                <MotoBoxIdentification show={motoModal[1]}><MyMotoID showOff={{motoModal, setMotoModal}} /></MotoBoxIdentification>
+                <MotoUserState>{state[1]}</MotoUserState>
                 <MotoServiceTime>Recogida en 10 minutos </MotoServiceTime>
-                <MotoButtonCall className="btn">Llamar</MotoButtonCall>
+                <MotoBoxIdentification show={motoModal[2]}><MotoWaitingList showOff={{motoModal, setMotoModal}}/></MotoBoxIdentification>
+                <MotoButtonCall waitingRoomStyle={state[0]} onClick={motoRequest}>{stateRequest}</MotoButtonCall>
+                
             </MotoBox>      
         </MotoBoxContent>        
         </>
