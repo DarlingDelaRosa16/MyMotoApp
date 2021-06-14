@@ -1,7 +1,8 @@
-import {React, useState} from 'react'
+import {React, useState, useContext} from 'react'
+import UserContext from '../Contexts/userContext'
 import {AplicationName, LoginButton, MotoBox, MotoBoxContent, MotoBoxIdentification,
-    MotoButtonCall, MotoServiceTime, MotoUserName, MotoUserState, MyMotoApp,
-    TitleBoxContent, UserName} from '../styled'
+        MotoButtonCall, MotoServiceTime, MotoUserName, MotoUserState, MyMotoApp,
+        TitleBoxContent, UserName} from '../styled'
 import LogIn from './logIn'
 import MotoWaitingList from './motoWaitingList'
 import MyMotoID from './myMotoID'
@@ -9,6 +10,8 @@ import MyMotoID from './myMotoID'
 
 const MyMoto = () => {
     
+    const {contextState} = useContext(UserContext);
+
     const [state, setState] = useState([false, "Libre"])
     const [stateRequest, setStateRequest] = useState("Solicitar")
     const [motoModal, setMotoModal] = useState([false, false, false])
@@ -20,7 +23,7 @@ const MyMoto = () => {
         }
         if(state[0] === true){
             setMotoModal([false, false, true])
-         }
+        }
     }
     const infoMotoUser = ()=>{
         setMotoModal([false, true, false])
@@ -35,7 +38,7 @@ const MyMoto = () => {
             <LoginButton onClick={LoginIn}>Log In</LoginButton>
             <MotoBoxIdentification show={motoModal[0]}><LogIn showOff={{motoModal, setMotoModal}}/></MotoBoxIdentification>
             <AplicationName>My Motorista</AplicationName>
-            <UserName>Darling165</UserName>
+            <UserName>{contextState.nombre}</UserName>
         </MyMotoApp>
         
         <MotoBoxContent>
