@@ -106,7 +106,12 @@ export const MotoUserName = styled.h4`
     display : ${(props)=> props.displayName};
 `;
 
+export const TitleboxId = styled(MotoUserName)`
+    color: white;
+`;
+
 export const TitleBoxContent = styled.h1`
+    cursor: ${(props)=>props.mouseCursor};
     color: #222;
     padding: 7px;
     margin-bottom: 0;
@@ -138,6 +143,11 @@ export const MotoUserTrips = styled.h4`
     color: ${(props)=> props.colorName};
     padding-left: 5px;
     margin-bottom: 9px;
+`;
+
+export const UserCoordinates = styled(MotoUserTrips)`
+    margin: 0;
+    cursor: ${(props)=>props.mouseCursor};
 `;
 
 /*//////////////////////////////////////////////////////*/

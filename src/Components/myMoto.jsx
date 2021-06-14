@@ -4,6 +4,7 @@ import {AplicationName, LoginButton, MotoBox, MotoBoxContent, MotoBoxIdentificat
         MotoButtonCall, MotoServiceTime, MotoUserName, MotoUserState, MyMotoApp,
         TitleBoxContent, UserName} from '../styled'
 import LogIn from './logIn'
+import MapBoxGl from './mapBoxGL'
 import MotoWaitingList from './motoWaitingList'
 import MyMotoID from './myMotoID'
 
@@ -14,7 +15,7 @@ const MyMoto = () => {
 
     const [state, setState] = useState([false, "Libre"])
     const [stateRequest, setStateRequest] = useState("Solicitar")
-    const [motoModal, setMotoModal] = useState([false, false, false])
+    const [motoModal, setMotoModal] = useState([false, false, false, false])
 
     const motoRequest = ()=>{
         if(state[0] === false){
@@ -22,27 +23,33 @@ const MyMoto = () => {
             setStateRequest("Lista de espera")
         }
         if(state[0] === true){
-            setMotoModal([false, false, true])
+            setMotoModal([false, false, true, false])
         }
     }
-    const infoMotoUser = ()=>{
-        setMotoModal([false, true, false])
+    const infoMotoUser = () =>{
+        setMotoModal([false, true, false, false])
     }
-    const LoginIn = ()=>{
-        setMotoModal([true, false, false])
+    const loginIn = () =>{
+        setMotoModal([true, false, false, false])
+    }
+    const mapBox =() =>{
+        setMotoModal([false, false, false, true])
     }
 
     return (
         <>
         <MyMotoApp >
-            <LoginButton onClick={LoginIn}>Log In</LoginButton>
+            <LoginButton onClick={loginIn}>Log In</LoginButton>
             <MotoBoxIdentification show={motoModal[0]}><LogIn showOff={{motoModal, setMotoModal}}/></MotoBoxIdentification>
             <AplicationName>My Motorista</AplicationName>
             <UserName>{contextState.nombre}</UserName>
         </MyMotoApp>
+
+        <MotoBoxIdentification show={motoModal[3]}><MapBoxGl showOff={{motoModal, setMotoModal}}/></MotoBoxIdentification> 
         
         <MotoBoxContent>
-            <TitleBoxContent >Parada SI-K17-BN</TitleBoxContent>
+            <TitleBoxContent mouseCursor="pointer" onClick={mapBox}>Parada SI-K17-BN</TitleBoxContent>
+               
             <MotoBox>
 
                 <MotoUserName mouseCursor="pointer" colorName="black" as="a" onClick={infoMotoUser} >Darling Nomar De la Rosa</MotoUserName>
@@ -53,7 +60,9 @@ const MyMoto = () => {
                 <MotoButtonCall waitingRoomStyle={state[0]} onClick={motoRequest}>{stateRequest}</MotoButtonCall>
                 
             </MotoBox>      
-        </MotoBoxContent>        
+        </MotoBoxContent>  
+        
+             
         </>
     );
 }
