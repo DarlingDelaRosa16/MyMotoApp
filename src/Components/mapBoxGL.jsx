@@ -1,16 +1,16 @@
-import React, {useState} from 'react'
+import React, {useState } from 'react'
 import ReactMapGl, {Marker} from 'react-map-gl'
 import { MotoButtonClose } from '../styled'
 
 const MapBoxGl = (props) => {
     
     const showOff = ()=>{
-        props.showOff.setMotoModal([false,false,false,false])
+        props.showOff.setMotoModal(false)
     }
 
     const [viewport, setviewport] = useState({
-        latitude: 18.5218466,
-        longitude: -69.7819067,
+        latitude: 18.5898466,
+        longitude: -69.9919067,
         zoom: 18,
         width:  window.innerWidth,
         height: window.innerHeight
@@ -25,8 +25,8 @@ const MapBoxGl = (props) => {
             <MotoButtonClose onClick={showOff}>Cerrar</MotoButtonClose>
 
             <Marker 
-                latitude={18.5218466} 
-                longitude={-69.7819067}
+                latitude={18.5898466} 
+                longitude={-69.9919067}
                 offsetTop={-viewport.zoom * 3}
                 offsetLeft={-viewport.zoom * 3}
             >

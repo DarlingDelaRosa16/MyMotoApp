@@ -1,7 +1,10 @@
-import React from 'react'
+import React, {useContext}from 'react'
 import {MotoButtonClose, TitleboxId, UserCoordinates, UserName } from '../styled'
+import UserContext from '../Contexts/userContext'
 
 const MotoWaitingList = (props) => {
+    
+    const {contextState, initialUser} = useContext(UserContext);
 
     const showOff = ()=>{
         props.showOff.setMotoModal(false)
@@ -9,17 +12,25 @@ const MotoWaitingList = (props) => {
 
     const newLocation = ()=>{
         const geolocation = navigator.geolocation;
-        const posicion = (pos)=>console.log(pos)
+        const posicion = (pos)=>{}
         geolocation.getCurrentPosition(posicion)
+
+        props.showOff.setMotoModal([false, false, false, true])
     }
     
     return (
         <>
             <TitleboxId>Orden de servicio</TitleboxId>
-            <div>
-                <UserName colorName="white">Joan Pedernales Ulises</UserName>
-                <UserCoordinates as="a" mouseCursor="pointer" onClick={newLocation} colorName="white" >Coordenadas 18.528126, -69.780422</UserCoordinates>
-            </div>
+            {
+                contextState.map(item => (
+
+                    <div  key={item.id} style={{ marginBottom: "2px", border: "2px solid white", borderRadius:"5px"}}>
+                        <UserName colorName="white">{item.name} {item.lastName}</UserName>
+                        <UserCoordinates as="a" mouseCursor="pointer" onClick={newLocation} colorName="white" ></UserCoordinates>
+                    </div>
+                ))
+            }
+            
             
             <MotoButtonClose onClick={showOff}>Cerrar</MotoButtonClose>
         </>

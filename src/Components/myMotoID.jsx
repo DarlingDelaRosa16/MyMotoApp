@@ -18,7 +18,6 @@ const MyMotoID = (props) => {
                     <MotoButtonClose onClick={showOff}>Cerrar</MotoButtonClose>
                 </MotoContentInfo>
             </MotoIdContent>
-            
         </>
     );
 }

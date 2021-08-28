@@ -13,7 +13,7 @@ const LogIn = (props) => {
     })
 
     const showOff = (e)=>{
-        props.showOff.setMotoModal([false,false,false])
+        props.showOff.setMotoModal(false)
         e.preventDefault()
     }
 
@@ -26,7 +26,7 @@ const LogIn = (props) => {
 
     const sendData = ()=>{
         initialUser()
-        props.showOff.setMotoModal([false,false,false])
+        props.showOff.setMotoModal(false)
     }
 
     return (

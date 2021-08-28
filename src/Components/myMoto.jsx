@@ -8,17 +8,18 @@ import MapBoxGl from './mapBoxGL'
 import MotoWaitingList from './motoWaitingList'
 import MyMotoID from './myMotoID'
 
-
 const MyMoto = () => {
     
-    const {contextState} = useContext(UserContext);
-
+    const {contextState, initialUser} = useContext(UserContext);
+    
     const [state, setState] = useState([false, "Libre"])
     const [stateRequest, setStateRequest] = useState("Solicitar")
     const [motoModal, setMotoModal] = useState([false, false, false, false])
 
+    
     const motoRequest = ()=>{
         if(state[0] === false){
+            initialUser()
             setState([true, "Ocupado"])
             setStateRequest("Lista de espera")
         }
@@ -42,7 +43,7 @@ const MyMoto = () => {
             <LoginButton onClick={loginIn}>Log In</LoginButton>
             <MotoBoxIdentification show={motoModal[0]}><LogIn showOff={{motoModal, setMotoModal}}/></MotoBoxIdentification>
             <AplicationName>My Motorista</AplicationName>
-            <UserName>{contextState.nombre}</UserName>
+            <UserName>{contextState.name} {contextState.lastName}</UserName>
         </MyMotoApp>
 
         <MotoBoxIdentification show={motoModal[3]}><MapBoxGl showOff={{motoModal, setMotoModal}}/></MotoBoxIdentification> 
@@ -55,7 +56,6 @@ const MyMoto = () => {
                 <MotoUserName mouseCursor="pointer" colorName="black" as="a" onClick={infoMotoUser} >Darling Nomar De la Rosa</MotoUserName>
                 <MotoBoxIdentification show={motoModal[1]}><MyMotoID showOff={{motoModal, setMotoModal}} /></MotoBoxIdentification>
                 <MotoUserState>{state[1]}</MotoUserState>
-                <MotoServiceTime>Recogida en 10 minutos </MotoServiceTime>
                 <MotoBoxIdentification show={motoModal[2]}><MotoWaitingList showOff={{motoModal, setMotoModal}}/></MotoBoxIdentification>
                 <MotoButtonCall waitingRoomStyle={state[0]} onClick={motoRequest}>{stateRequest}</MotoButtonCall>
                 

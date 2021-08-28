@@ -39,7 +39,7 @@ export const MotoBoxIdentification = styled.div`
     border-radius: 2px;
     background: linear-gradient(#555555, #111111);
     width: 370px;
-    height: 185px;
+    min-height: 185px;
 `;
 
 export const MotoIdContent = styled.div`
@@ -145,10 +145,6 @@ export const MotoUserTrips = styled.h4`
     margin-bottom: 9px;
 `;
 
-export const UserCoordinates = styled(MotoUserTrips)`
-    margin: 0;
-    cursor: ${(props)=>props.mouseCursor};
-`;
 
 /*//////////////////////////////////////////////////////*/
 /*////////////////////////IMG///////////////////////*/
@@ -162,7 +158,15 @@ export const MotoIdentificationImg = styled.img`
     margin-left: 5px;
     margin-top: 5px;
     border-radius: 5px;
-    background-color: violet;
+`;
+
+export const UserCoordinates = styled(MotoIdentificationImg)`
+    display: inline-block;
+    margin: 5px;
+    width: 353px;
+    height: 45px;
+    cursor: ${(props)=>props.mouseCursor};
+    background-image: url("https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg");
 `;
 
 /*//////////////////////////////////////////////////////*/
