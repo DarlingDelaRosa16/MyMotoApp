@@ -1,7 +1,7 @@
 import {React, useState, useContext} from 'react'
 import UserContext from '../Contexts/userContext'
 import {AplicationName, LoginButton, MotoBox, MotoBoxContent, MotoBoxIdentification,
-        MotoButtonCall, MotoServiceTime, MotoUserName, MotoUserState, MyMotoApp,
+        MotoButtonCall, MotoUserName, MotoUserState, MyMotoApp,
         TitleBoxContent, UserName} from '../styled'
 import LogIn from './logIn'
 import MapBoxGl from './mapBoxGL'

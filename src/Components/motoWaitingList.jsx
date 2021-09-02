@@ -4,7 +4,7 @@ import UserContext from '../Contexts/userContext'
 
 const MotoWaitingList = (props) => {
     
-    const {contextState, initialUser} = useContext(UserContext);
+    const {contextState, /*initialUser*/} = useContext(UserContext);
 
     const showOff = ()=>{
         props.showOff.setMotoModal(false)
